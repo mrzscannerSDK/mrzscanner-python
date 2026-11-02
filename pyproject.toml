@@ -1,0 +1,20 @@
+# For a local editable install (pip install -e platforms/python) after copying a desktop library
+# build into src/mrzscanner/_lib/ (build.sh does it for the wheels). Release wheels are made by
+# build.sh / make_wheel.py: one per platform, the library inside.
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mrzscanner"
+version = "2.7.4"
+description = "Reads the machine-readable zone (MRZ) of passports, ID cards and visas from images"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "Proprietary" }
+
+[project.optional-dependencies]
+images = ["pillow"]
+
+[tool.setuptools.package-data]
+mrzscanner = ["_lib/*", "_lib/tessdata/*"]
